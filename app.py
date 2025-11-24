@@ -16,7 +16,7 @@ dp = Dispatcher(bot)
 @dp.message_handler(commands=["start", "help"])
 async def cmd_start(message: types.Message):
     await message.reply(
-        "Hi! Send me any text message and I will forward it anonymously."
+        "пожалуйста, напишите ваш вопрос."
     )
 
 
@@ -34,7 +34,9 @@ async def handle_text(message: types.Message):
         parse_mode="HTML"
     )
 
-    await message.reply("✅ Your anonymous message has been sent.")
+    await message.reply('''вопрос получен, в порядке очереди я отвечу на него в рамках рубрики в телеграм-канале @obozreniepsy
+
+если вы хотите написать еще один вопрос — отправьте его здесь же.''')
 
 
 # Ignore all other content types
