@@ -13,6 +13,12 @@ bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher(bot)
 
 
+def save_to_file(text: str):
+    with open("questions.txt", "a", encoding="utf-8") as f:
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        f.write(f"[{timestamp}] {text}\n\n")
+
+
 @dp.message_handler(commands=["start", "help"])
 async def cmd_start(message: types.Message):
     await message.reply(
@@ -27,6 +33,7 @@ async def handle_text(message: types.Message):
         "📨 <b>New Anonymous Message</b>\n\n"
         f"{message.text}"
     )
+    save_to_file(message.text)
 
     await bot.send_message(
         ADMIN_CHAT_ID,
